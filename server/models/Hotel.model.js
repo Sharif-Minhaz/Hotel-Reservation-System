@@ -6,6 +6,10 @@ const hotelSchema = new Schema({
 		type: String,
 		required: true,
 	},
+	title: {
+		type: String,
+		required: true,
+	},
 	type: {
 		type: String,
 		required: true,
@@ -41,8 +45,10 @@ const hotelSchema = new Schema({
 		type: Number,
 		required: true,
 	},
-    featured: {
-        type: Boolean,
-        default: false
-    }
+	featured: {
+		type: Boolean,
+		default: false,
+	},
 });
+
+export default model("hotel", hotelSchema);

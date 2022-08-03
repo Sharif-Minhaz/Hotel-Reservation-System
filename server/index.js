@@ -2,15 +2,15 @@ import express from "express";
 const app = express();
 import dotenv from "dotenv";
 import mongoose from "mongoose";
-// routes
-import setRoutes from "./routes/routes.js";
 // middlewares
 import setMiddlewares from "./middlewares/middlewares.js";
+// routes
+import setRoutes from "./routes/routes.js";
 
 dotenv.config();
-// set routes and middlewares
-setRoutes(app);
+// set middlewares and routes
 setMiddlewares(app);
+setRoutes(app);
 
 // handle not found route
 app.use((req, res, next) => {
@@ -19,8 +19,14 @@ app.use((req, res, next) => {
 
 // handle server error
 app.use((err, req, res, next) => {
-	console.error(err);
-	res.status(500).json("Internal server error");
+	const errorStatus = err.status || 500;
+	const errorMessage = err.message || "Something went wrong";
+	res.status(errorStatus).json({
+		success: false,
+		status: errorStatus,
+		message: errorMessage,
+		stack: err.stack,
+	});
 });
 
 const port = process.env.PORT || 8800;

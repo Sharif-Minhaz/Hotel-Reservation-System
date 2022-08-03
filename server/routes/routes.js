@@ -1,7 +1,7 @@
 import authRoute from "./auth.route.js";
 import hotelsRoute from "./hotels.route.js";
 import roomsRoute from "./rooms.route.js";
-import usersRoute from "./rooms.route.js";
+import usersRoute from "./users.route.js";
 
 const routes = [
 	{
