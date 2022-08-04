@@ -53,4 +53,3 @@ export const hotelGetAllController = async (req, res, next) => {
 		next(err);
 	}
 };
-
