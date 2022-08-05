@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
 	faBed,
@@ -15,6 +16,9 @@ import "react-date-range/dist/theme/default.css";
 import { format } from "date-fns";
 
 const Header = ({ type }) => {
+	const navigate = useNavigate();
+
+	const [destination, setDestination] = useState("");
 	const [openDate, setOpenDate] = useState(false);
 	const [date, setDate] = useState([
 		{
@@ -33,6 +37,16 @@ const Header = ({ type }) => {
 	const handleOption = (option, type) => {
 		setOptions((prev) => {
 			return { ...prev, [option]: type === "i" ? options[option] + 1 : options[option] - 1 };
+		});
+	};
+
+	const handleSearch = () => {
+		navigate("/hotels", {
+			state: {
+				destination,
+				date,
+				options,
+			},
 		});
 	};
 
@@ -76,6 +90,7 @@ const Header = ({ type }) => {
 									className="headerSearchInput"
 									type="text"
 									placeholder="Where are you going?"
+									onChange={(e) => setDestination(e.target.value)}
 								/>
 							</div>
 							<div className="headerSearchItem">
@@ -92,6 +107,7 @@ const Header = ({ type }) => {
 										editableDateInputs={true}
 										onChange={(item) => setDate([item.selection])}
 										moveRangeOnFirstSelection={false}
+										minDate={new Date()}
 										ranges={date}
 										className="date"
 									/>
@@ -178,7 +194,9 @@ const Header = ({ type }) => {
 								)}
 							</div>
 							<div className="headerSearchItem">
-								<button className="headerBtn">Search</button>
+								<button className="headerBtn" onClick={handleSearch}>
+									Search
+								</button>
 							</div>
 						</div>
 					</>
