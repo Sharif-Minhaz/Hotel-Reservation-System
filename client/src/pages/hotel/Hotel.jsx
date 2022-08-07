@@ -39,7 +39,7 @@ const Hotel = () => {
 	// get day differences
 	const MILLISECONDS_PER_DAY = 24 * 60 * 60 * 1000;
 	const dayDifference = (date1, date2) => {
-		const timeDiff = Math.abs(date1.getTime() - date2.getTime());
+		const timeDiff = Math.abs(date1?.getTime() - date2?.getTime());
 		const diffDays = Math.ceil(timeDiff / MILLISECONDS_PER_DAY);
 
 		return diffDays;
@@ -70,7 +70,7 @@ const Hotel = () => {
 		setSlideNumber(newSlideNumber);
 	};
 
-	const days = dayDifference(dates[0].endDate, dates[0].startDate);
+	const days = dayDifference(dates[0]?.endDate, dates[0]?.startDate);
 
 	return (
 		<div>
@@ -154,7 +154,7 @@ const Hotel = () => {
 					<Footer />
 				</div>
 			)}
-			{openModal && <Reserve />}
+			{openModal && <Reserve setOpenModal={setOpenModal} hotelId={id} />}
 		</div>
 	);
 };

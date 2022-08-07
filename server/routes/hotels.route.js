@@ -8,13 +8,16 @@ import {
 	hotelDeleteController,
 	getByCityController,
 	getByTypeController,
+	getRoomGetController,
 } from "../controllers/hotels.controller.js";
 const router = express.Router();
 
 router.get("/", hotelGetAllController);
 router.get("/find/:id", hotelGetController);
+
 router.get("/getByCity", getByCityController);
 router.get("/getByType", getByTypeController);
+router.get("/room/:hotelId", getRoomGetController);
 
 router.post("/", verifyAdmin, hotelPostController);
 

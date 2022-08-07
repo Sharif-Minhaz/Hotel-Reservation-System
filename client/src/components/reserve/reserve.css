@@ -18,9 +18,10 @@
 
 .rClose {
 	position: absolute;
-	top: 0;
-	right: 0;
+	top: 10px;
+	right: 10px;
 	cursor: pointer;
+	font-size: 20px;
 }
 
 .rItem {
@@ -63,6 +64,10 @@
 .room {
 	display: flex;
 	flex-direction: column;
+}
+
+.room label {
+	font-size: 10px;
 }
 
 .rButton {
